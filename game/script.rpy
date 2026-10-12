@@ -148,7 +148,65 @@ label door_vanishes:
     scene black
     with flicker
     "{i}Far behind you, in the hall that you came by, a door closes. It was like you were a guest and it was showing you away.{/i}"
+    m "No, no, no, no."
+    "{i}You run. It is the same hall, the same thing hanging from the ceiling, but the front door is simply gone.{/i}"
+    "{i}Only a wall, which looked like it was plastered then papered rub against your skin as you felt the door.{/i}"
+    e "Hush."
+    "{i}The word is breathed into your ear yet again, which felt like it was just the wind but you knew it was something else.{/i}"
+    "{i}You turn back. Nothing at all.{/i}"
+    "{i}You then go to the far end of the house and see a lock containing 4 animals.{/i}"
+    m "That is the way out. That has to be the way out."
+    "{i}You check your phone. It said no signal, and the time showed 12:05."
+    $ door_gone = True
+    return
+label review_progress:
+    m "Okay, I have got to calm down here. What do I actually have?"
+    if "wolf" in clues:
+        m "The wolf from the kitchen."
+    else:
+        m "No wolf yet. Maybe it is in the kitchen."
+    if "stag" in clues:
+        m "The stag from the laboratory."
+    else:
+        m "No stag yet. Maybe it is in the laboratory."
+    if "owl" in clues:
+        m "The owl from the library."
+    else:
+        m "No owl yet. Probably in the library."
+    if "moth" in clues:
+        m "The moth from the bedroom."
+    else:
+        m "No moth yet. That just leaves the bedroom."
+    if orders_found() == 4:
+        m "And I know all of their orders. Every room told me where its animals stood."
+    elif orders_found() == 0:
+        m "I do not know the orders of the animals. Every room might hold the piece of that."
+    else:
+        m "I know where some of the animals stand, but not all of them yet."
+    $ tc = len(tokens)
+    if tc>0:
+        m "And I am carrying [tc] small things that someone in this house had wanted me to have."
+    jump room_options
+
+label phone_check:
+    $ phone_checks += 1
+    if phone_checks == 1:
+        "{i}You pull out your phone. The clock has the same time as before and it has no signal.{/i}"
+        "{i}All that you can see is the fourteen missed calls from Mira whom you cannot answer due to the signal.{/i}"
+        "{i}Mira was your sister who had been working hard for your family since your mom died years ago.{/i}"
+        $ lore.add("phone_1")
+    elif phone_checks == 2:
+        "{i}The screen lights up on its own and you see a voicemail that you had never opened.{/i}"
+        mira "Hello, it is me. I know that you are busy. I found mom's soup recipe. It was awful. Probably it was I who didnt know how to make it."
+        mira "Come home sometime. Lets cook it together. Bye."
+        "The recording ends."
+        $ lore.add("phone_2")
+        $ suspicion += 1
+    elif phone_checks ==  3:
+        "This time, the phone calls Mira by itself. The ring goes despite there being no signal."
+        "She answers. But there was no voice. Maybe you could not hear"
     
+
             
 
 
