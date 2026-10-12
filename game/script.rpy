@@ -98,10 +98,58 @@ label room_options:
     with fade
     $ hub_visits += 1
     if suspicion >= 15:
-        $ caught_reason = "Greed"
+        $ caught_reason = "greed"
         jump ending_caught
+    if len(rooms_visited) >= 1 and not door_gone:
+        call door_vanishes
+        scene main_hall at bg_fit
+        with dissolve
+        with fade
+    if suspicion >= 4 and not enc1:
+        jump encounter_one
+    if suspicion >= 7 and not enc2:
+        jump encounter_two
+    if suspicion >= 10 and not enc3:
+        jump encounter_three
+    if suspicion >= 13 and not enc4:
+        jump encounter_four
+
+    if suspicion == 0:
+        "{i}The chandelier hangs very still.{/i}"
+    elif suspicion <= 3:
+        "{i}The hall was colder than it was a minute ago. The chandeliers crystals look like theyre shining brighter.{/i}"
+    elif suspicion <= 7:
+        "{i}Something in the house has noticed you. You feel like the air carries a different weight now.{/i}"
+    elif suspicion <= 11:
+        "{i}The shadows in the corners have become a bit too thick.{/i}"
+    else:
+        "{i}The mansion looks like it has stopped pretending. It looks like it is waiting for you to make one more mistake.{/i}"
+    if hub_visits == 8:
+        "{i}You look strangely at the chandelier as all the crystals suddenly shine at once.{/i}"
+        "{i}You blame your drowsiness for seeing things.{/i}"
     menu:
         "You stand in the hallway infront of four rooms that you can explore. Which one will you go to now?"
+        "The Kitchen":
+            jump kitchen_enter
+        "The Laboratory":
+            jump lab_eneter
+        "The Library":
+            jump library_enter
+        "The Bedroom":
+            jump bedroom_enter
+        "Check your phone.":
+            jump phone_check 
+        "Stop and think about what you know.":
+            jump review_progress
+        "Go to the back door.":
+            if door_gone and symbols_found() == 4:
+                jump backdoor_lock
+label door_vanishes:
+    scene black
+    with flicker
+    "{i}Far behind you, in the hall that you came by, a door closes. It was like you were a guest and it was showing you away.{/i}"
+    
+            
 
 
 
