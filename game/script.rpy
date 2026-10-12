@@ -264,6 +264,60 @@ label encounter_three:
     scene black 
     with flicker
     "{i}Your phone rings inside your pocket.{/i}"
+    "{i}No signal, it says. But the text Mira appears on the screen.{/i}"
+    "{i}It rings anyways.{/i}"
+    menu:
+        "The screen reads: Mira"
+        "Answer it.":
+            m "Mira?"
+            mira "Hey, it is me. Where are you right now? You said you would be home."
+            "{i}It sounded exactly like her. It was the cruelest thing that you have eer heard.{/i}"
+            mira "Why wont you ever come home?"
+            mira "Do you hate it here?"
+            m "{i}This is not her. This is not her. This is not her....this is not her.{/i}"
+            "{i}The voice slides mid word.{/i}"
+            e "That is what I want too. Dont you see that we are alike?"
+            $ suspicion += 1
+        "Let it ring.":
+            "{i}You left the phone in your pocket and let it ring, ring and then ring.{/i}"
+            "{i}This is exactly what you have done for 2 years, and your shame burns brighter than ever before.{/i}"
+            "{i}It eventually stops. A voice then, which you had never heard before, says kindly...{/i}"
+            e "You are very good at that. Letting it ring like that."
+            m "Shut up."
+            e "I am not judging. I am just saying that I woukd have answered."
+        "Throw the phone across the wall.":
+            "{i}It cracks on the plaster then the screen goes white, then black. The ringing does not stop.{/i}"
+            $ suspicion += 2
+            e "Oh, that was her number. She will be sad if she cannot reach you."
+    scene main_hall at bg_fit
+    with dissolve 
+    with fade
+    jump room_options
+label encounter_four:
+    $ enc4 = True
+    "{i}The walls begin to breathe.{/i}"
+    "{i}There is no other word for it. The wallpaper swells an sinks back like the chest of something asleep.{/i}"
+    "{i}All four doors swing open at once. Behind each one is the same dark matter Which starts leaning towards you.{/i}"
+    e "You have touched so much of my things."
+    e "I dont want to be angry. I am tired."
+    e "If you keep taking from me, I will have to keep you."
+    menu:
+        "You have one clear moment. What do you do?"
+        "Run for the back door." if symbols_found() == 4:
+            "{i}You run. The hall stretches under your feet and snaps you back infront of the lock.{/i}"
+            jump backdoor_lock
+        "Apologise. Mean it.":
+            m "I am sorry. I did not understand what any of this was."
+            m "I will be careful from now. I promise."
+            e "Promises... You people and your promises."
+            "{i}The walls slow their breathing. One by one, the doors drift shut. It is not forgiveness, but a pause.{/i}"
+            $ suspicion -= 2
+            jump room_options
+        "Stand your ground and look at it.":
+            "{i}You turn to the dark at the far end of the hall and make yourself keep your eyes open.{/i}"
+            
+
+
 
     
 
