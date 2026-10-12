@@ -449,20 +449,66 @@ label kitchen_tin:
     if "k_tin" in done:
         m "{i}I have already dealt with this tin.{/i}"
         jump kitchen_menu
-        "{i}A biscuit tin painted with roses. Please ask first is carved carefully there.{/i}"
-        menu:
-            "What do you do?"
-            "Ask out loud, if you may open it.":
-                m "Excuse me. May I? I would like to see what is inside. I will be careful."
-                "{i}The silence stretches. Then the padlock opens itself and drops into your palm.{/i}"
-                "{i}Inside, there wasa plain gold ring worn thin and and a note that said : Whoever comes to the table, do not let the pot go cold.{/i}"
-                $ tokens.add("ring")
-                $ done.add("k_tin")
-                $ lore.add("k_tin")
-                m "Her wedding ring. She left it for a stranger."
-                fa "Strangers are the only ones who stay for a little while, dear. Everyone else is gone."
-            "Pry it open with a kitchen knife":
-                "{i}It snaps like the crack of a bone. The gold ring rolls across the floor under the stove where something quick catches it.{/i}"
+    "{i}A biscuit tin painted with roses. Please ask first is carved carefully there.{/i}"
+    menu:
+        "What do you do?"
+        "Ask out loud, if you may open it.":
+            m "Excuse me. May I? I would like to see what is inside. I will be careful."
+            "{i}The silence stretches. Then the padlock opens itself and drops into your palm.{/i}"
+            "{i}Inside, there wasa plain gold ring worn thin and and a note that said : Whoever comes to the table, do not let the pot go cold.{/i}"
+            $ tokens.add("ring")
+            $ done.add("k_tin")
+            $ lore.add("k_tin")
+            m "Her wedding ring. She left it for a stranger."
+            fa "Strangers are the only ones who stay for a little while, dear. Everyone else is gone."
+        "Pry it open with a kitchen knife":
+            "{i}It snaps like the crack of a bone. The gold ring rolls across the floor under the stove where something quick catches it.{/i}"
+            $ suspicion += 2
+            $ done.add("k_tin")
+            e "She asked you to ask."
+            m "{i}Great. So thats gone.{/i}"
+        "Leave it. It is not yours.":
+            "{i}You leave it where it sits. It feels like the first right decision that you have made tonight.{/i}"
+    jump kitchen_menu
+label kitchen_pantry:
+    "{i}The pantry door was swollen with damp and groans as it gives.{/i}"
+    "{i}There were medicines for cough, headaches, fever and nerves."
+    "{i}Rows and rows of that last one."
+    if "k_pantry" in done:
+        m "I have seen enough of this pantry."
+        jump kitchen_menu
+    $ done.add("k_pantry")
+    $ lore.add("k_pantry")
+    "{i}On the highest shelf, you could see a single jar wrapped in cloth tied with a blue hair ribbon.{/i}"
+    menu:
+        "Do you take it down?"
+        "Take it down and read the label.":
+            "For when she asks to come home."
+            "{i}The jar is warm and you can even feel it humming faintly.{/i}"
+            $ suspicion += 2
+            e "Put that back."
+            "{i}You immediately put it back. Your hand shakes so badly that it chatters against the shelf.{/i}"
+        "Leave it where it is.":
+            "{i}You close the pantry quietly. Some hopes should be left to rest.{/i}"
+            jump kitchen_menu
+label kitchen_recipe:
+    "{i}A thick, stained book lies in the stove. Most of the pages look ordinary."
+    if "o_wolf" in clues:
+        m "{i}I have read it. I know where she put herself.{/i}"
+        jump kitchen_menu
+    "{i}Then the margins change and the measurements stop making sense.{/i}"
+    "{i}Beneath it, there was a line underlined so hard the pen tore the paper.{/i}"
+    "'Forgive me, my loves. I onl wanted to keep us together.'"
+    $ clues.add("o_wolf")
+    $ lore.add("k_recipe")
+    m "Last, fourth. SEraphin, the wolf took the last place of all."
+    jump kitchen_menu
+label kitchen_cellar:
+    if "k_cellar" in done:
+        m "{i}No, I have been down once. That is enough.{/i}"
+        jump kitchen_menu
+        "{i}The key turnsvery easily"
+
         
         
 
