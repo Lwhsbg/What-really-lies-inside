@@ -417,6 +417,52 @@ label kitchen_window:
         m "Four graves, and one hole. One hole, waiting? I do not want to look at it again."
     else:
         $ done.add("k_window")
+        $ lore.add("k_window")
+        m "Wow, four stones there, four rooms and four animals, and there is a fifth hole dug up."
+        m "Maybe it is just soil. It doesnt mean anything.{/i}"
+        "{i}You look closer. The fifth hole looks exactly like your height.{/i}"
+        jump kitchen_menu
+label kitchen_stove:
+    "A crooked wooden lid stays on the pot upon the stove and there was a wooden spoon on the side too."
+    if "k_stove" in done:
+        m "The pot is quiet now. I will not wake it again."
+        jump kitchen_menu
+    menu:
+        "What do you do?"
+        "Settle the lid straight and turn the dial to off.":
+            $ done.add("k_stove")
+            $ lore.add("k_stove")
+            "{i}You set the lid straight and turn the dial to off. It sets to OFF even though nothing was ever lit.{/i}"
+            "{i}The steam thins and somewhere very faintly, it lets out a long breath like noise identical to a person.{/i}"
+            fa "...thank you, dear."
+            "{i}It is the first voice in the house that has not frightened you.{/i}"
+        "Lift the lid and look inside.":
+            $ done.add("k_stove")
+            "{i}Inside is clear broth, perfectly still. A dead moth is on the surface of the liquid.{/i}"
+            $ suspicion += 1
+            "{i}As you watch it, it's wings twitch.{/i}"
+            m "{i}Okay, no. The lid goes back.{/i}"
+        "Leave it be.":
+            "{i}Some pots are best left to simmer.{/i}"
+    jump kitchen_menu
+label kitchen_tin:
+    if "k_tin" in done:
+        m "{i}I have already dealt with this tin.{/i}"
+        jump kitchen_menu
+        "{i}A biscuit tin painted with roses. Please ask first is carved carefully there.{/i}"
+        menu:
+            "What do you do?"
+            "Ask out loud, if you may open it.":
+                m "Excuse me. May I? I would like to see what is inside. I will be careful."
+                "{i}The silence stretches. Then the padlock opens itself and drops into your palm.{/i}"
+                "{i}Inside, there wasa plain gold ring worn thin and and a note that said : Whoever comes to the table, do not let the pot go cold.{/i}"
+                $ tokens.add("ring")
+                $ done.add("k_tin")
+                $ lore.add("k_tin")
+                m "Her wedding ring. She left it for a stranger."
+                fa "Strangers are the only ones who stay for a little while, dear. Everyone else is gone."
+            "Pry it open with a kitchen knife":
+                "{i}It snaps like the crack of a bone. The gold ring rolls across the floor under the stove where something quick catches it.{/i}"
         
         
 
