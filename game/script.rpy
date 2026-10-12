@@ -315,7 +315,72 @@ label encounter_four:
             jump room_options
         "Stand your ground and look at it.":
             "{i}You turn to the dark at the far end of the hall and make yourself keep your eyes open.{/i}"
-            
+            "{i}You stare far back into the hall.{/i}"
+            "{i}Something tall stands there. Not really a shape, but more like the absence of one.{/i}"
+            "{i} It does not move. It only lets you see that it is there.{/i}"
+            $ lore.add("glimpse")
+            $ suspicion += 1
+            e "Brave or foolish, it is hard to tell the difference."
+    jump room_options
+label kitchen_enter:
+    scene kitchen at bg_fit
+    with dissolve
+    with fade
+    if "kitchen" not in rooms_visited:
+        $ rooms_visited.add("kitchen")
+        "{i}You push the door open, and the smell reaches you before the sight does.{/i}"
+        "{i}Something sweet that had gone sour, like rotten fruits.{/i}"
+        "{i}There was a long table down the road, possibly for five or six people. Only one was spotless.{/i}"
+        m "Someone had set this table and never got to sit on it."
+    else:
+        "{i}The kitchen is exactly how you had left it. The pot ws still steaming.{/i}"
+        jump kitchen_menu
+label kitchen_menu:
+    menu:
+        "What do you want to check?"
+        "The long table.":
+            jump kitchen_table
+        "Sit in the sixth chair." if "k_table" in done and "k_sit" not in done:
+            jump kitchen_sit
+        "The knives and the cutting board.":
+            jump kitchen_knives
+        "The stove and steaming pot":
+            jump kitchen_stove
+        "The tin on the high shelf.":
+            jump kitchen_tin
+        "The pantry.":
+            jump kitchen_pantry
+        "The recipe book.":
+            jump kitchen_recipe
+        "The cellar door." if "k_key" in done:
+            jump kitchen_cellar
+        "The cellar door." if "k_key" not in done:
+            "{i}A heavy iron bolt and a lock. It will probably want a key first."
+            jump kitchen_menu
+        "Leave the kitchen.":
+            jump room_options
+label kitchen_table:
+    "{i}Only the sixth chair had been polished. A small card was there which stated, for our guest.{/i}"
+    if "k_key" in done:
+        m "{i}The card has not change and it still says guest.{/i}"
+        jump kitchen_menu
+        "{i}The handwriting is a little shaky.{/i}"
+        menu:
+            "What do you do?"
+            "Lift the sixth plate.":
+                "{i}Under it sits a small brass key, pressed into the wood as if the table had grown it.{/i}"
+                $ done.add("k_key")
+                $ done.add("k_table")
+                m "Someone wanted me to find this."
+            "Leave the plate alone.":
+                $ done.add("k_table")
+                "{i}Something about that one clean plate makes your skin crawl. Maybe you should check it next time."
+
+        
+
+
+
+
 
 
 
