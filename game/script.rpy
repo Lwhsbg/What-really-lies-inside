@@ -344,6 +344,8 @@ label kitchen_menu:
             jump kitchen_sit
         "The knives and the cutting board.":
             jump kitchen_knives
+        "The window":
+            jump kitchen_window
         "The stove and steaming pot":
             jump kitchen_stove
         "The tin on the high shelf.":
@@ -375,7 +377,47 @@ label kitchen_table:
             "Leave the plate alone.":
                 $ done.add("k_table")
                 "{i}Something about that one clean plate makes your skin crawl. Maybe you should check it next time."
-
+                jump kitchen_menu
+label kitchen_sit:
+    $ done.add("k_sit")
+    "{i}You pull out the sixth chair and sit. It fits you perfectly like it was made for you.{/i}"
+    "{i}For a moment, you wonder if it was actually made for you, but you discard thise thoughts immediately.{/i}"
+    "{i}Steam begins to rise from the pot. Ginger and cinnamon, clear broth with something floating on it.{/i}"
+    "{i}Your mothers soup{/i}"
+    "{i}Your mother used to make it for you every sunday during childhood.{/i}"
+    m "{i}I have never made it since the funeral. It is always Mira that makes it.{/i}"
+    e "Eat, if you would like. No one has to eat alone here."
+    menu:
+        "The spoon rests besides your hand."
+        "Dont eat, say thanks and then stand up.":
+            m "Thank you. It smells wonderful but I cannot stay."
+            "{i}The steam hangs on for a moment, and then thins to nothing. You have the odd impression of someone nodding.{/i}"
+            e "...Most of them eat."
+            $ lore.add("k_sit")
+        "Pick up the spoon.":
+            "{i}The moment the spoon touches your lip, the broth burns to ash.{/i}"
+            "{i}The ash to dust and that to a cold which runs straight down your throat.{/i}"
+            $ suspicion += 3
+            e "Oh, now you've started."
+            "{i}You gag and shove yourself back. The chair slides away on its own though, letting you leave.{/i}"
+            "{i}You get the dreadful feeling of having signed something.{/i}"
+            jump kitchen_menu
+label kitchen_knives
+    "{i}Every knife is oiled and bright, but the cutting boards are scarred from decades ago.{/i}"
+    "{i}Carved into one corner was a wolf's head with its jaw half open.{/i}"
+    if "wolf" not in clues:
+        $ clues.add("wolf")
+        m "A wolf. That is the first of the four animals on the lock."
+    else:
+        m "The wolf again. I have already got that one."
+    jump kitchen_menu
+label kitchen_window:
+    "{i}The rain runs down in the kitchen wimdow. Beyond it there is a garden like looking place."
+    if "k_window" in done:
+        m "Four graves, and one hole. One hole, waiting? I do not want to look at it again."
+    else:
+        $ done.add("k_window")
+        
         
 
 
