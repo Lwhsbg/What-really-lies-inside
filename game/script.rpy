@@ -85,6 +85,26 @@ label back_room:
     m " is this the only escape that I have left?"
     m "I have no idea of what is happening at all, but all that i know is that i need to get out of this place."
     m "I need to go back and start exploring the rooms. There might be some clues there."
+    jump room_options
+label room_room:
+    m "I need to explore this place while waiting for the morning I guess."
+    m "Might just find something interesting inside, haha."
+    m "How could I sleep when I have this huge thing to explore in front of me."
+    m "Adventure is callinggg."
+    jump rooom_options
+label room_options:
+    scene main_hall at bg_fit
+    with dissolve
+    with fade
+    $ hub_visits += 1
+    if suspicion >= 15:
+        $ caught_reason = "Greed"
+        jump ending_caught
+    menu:
+        "You stand in the hallway infront of four rooms that you can explore. Which one will you go to now?"
+
+
+
 
 
 
