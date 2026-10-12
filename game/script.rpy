@@ -204,7 +204,67 @@ label phone_check:
         $ suspicion += 1
     elif phone_checks ==  3:
         "This time, the phone calls Mira by itself. The ring goes despite there being no signal."
-        "She answers. But there was no voice. Maybe you could not hear"
+        "She answers. But there was no voice. Maybe you could not hear what she was saying."
+        e "Who is that?"
+        "Your body suddenly feels the chill. It came and went again."
+        e "Who is that waiting for you?"
+        e "Everyone has someone...waiting."
+        $ suspicion += 1
+    else:
+        "{i}You hold the phone but do not open it. You already knew what it would say.{/i}"
+        jump room_options
+label encounter_one:
+    $ enc1 = True 
+    "{i}Above you, the chandelier starts to shake. It slowly lightens itself one at a time.{/i}"
+    "{i}For a moment, you feel like the house felt like what it was meant to be.{/i}"
+    e "Welcome."
+    "{i}A child's voice, you notice until you feel the layers underneath it, like it was coming from the well.{/i}"
+    e "I dont feel lonely here anymore."
+    menu:
+        "How do you intend to answer?"
+        "Answer polietely.":
+            m "Thank you... It is a lovely house."
+            e "haha, make yourself at home..."
+            "Manners,, seem like it is the currency here."
+        "Demand to be let out.":
+            m "Let me out. Right now."
+            e "haha, youre like everyone else."
+            $ suspicion += 1
+        "Say nothing.":
+            "{i}You say nothing. The candle burns out eventually and then it returns to normal.{/i}"
+    jump room_options
+label encounter_two:
+    $ enc2 = True
+    "{i}Somewhere around the house, you feel a ball bouncing slowly and evenly.{/i}"
+    "{i}It comes slowly to you, a wooden ball from the empty hall and stops at your shoe.{/i}"
+    "{i}It is painted with blue color and is chipped at one side. The blue paint seems to be resembling a name, LENORA.{/i}"
+    menu:
+        "What do you do with the ball?"
+        "Roll it gently back into the dark.":
+            "{i}You crouch down and push it slowly the way back it came. You could not hear anything.{/i}"
+            "{i}But a moment later, what sounded like a pleased sound came from the dark.{/i}"
+            "{i}It almost sounded like a breath of laughter.{/i}"
+            fd "Again?"
+            m "{i}Not now. But thank you very much.{/i}"
+            "{i}The hall felt, slightly bit less crowded for a bit.{/i}"
+            $ lore.add("ball")
+        "Kick it away.":
+            "{i}You put your boot to it and send it clattering into the dark.{/i}"
+            $ suspicion += 2
+            fd "That was mine..."
+            "{i}The words sounded small, and wounded.{/i}"
+        "Pocket it.":
+            "{i}You take it. It is heavier than what a wooden ball should be.{/i}"
+            $ suspicion += 2
+            e "Put that back."
+            m "You felt fear. You immediately put it back."
+    jump room_options
+label encounter_three:
+    $ enc3 = True
+    scene black 
+    with flicker
+    "{i}Your phone rings inside your pocket.{/i}"
+
     
 
             
