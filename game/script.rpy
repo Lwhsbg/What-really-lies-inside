@@ -36,4 +36,28 @@ label start:
     "{i}You run to it in a hurry and take shelter beneath it.{/i}"
     "{i}As soon as you go beneath it, you see a dim light coming from a distance.{/i}"
     m "What is that in the middle of this jungle? A house??"
-    "{i}You run toeards it to check it out.{/i}"
+    "{i}You run towards it to check it out.{/i}"
+    scene man_son at bg_fit
+    with dissolve 
+    with hpunch
+    "{i}Infront of you there was a big old warehouse like looking mansion which seemed to be abandoned.{/i}"
+    "{i}It had a sort of dark and creepy look, just like some house you would find in a horror movie."
+    m "It looks abandoned."
+    m "It looks like, It would probably be an old building abandoned by the previous rich owners."
+    m "Maybe some noble family of the past lived here."
+    "{i}With thoughts like those, you go closer to it for some shelter.{/i}"
+    "{i}There are leaks everywhere on the frontyard. You continue to get soaked in the rain.{/i}"
+    m "Oh no, I guess I will have to go in or else it will be bad."
+    m "I do not think that would be the best choice from me, considering the mystery of this place."
+    m "This is giving me very creepy vibes."
+    "{i}You could barely feel a small unnatural force calling you from the inside, but you blamed it on your imagination and moved on.{/i}"
+    "{i}Ignoring all these warnings, you finally decided to go inside.{/i}"
+    m "Let's do this."
+    scene main_hall at bg_fit
+    with dissolve
+    with fade 
+    "{i}You were greeted with a big hall like place, with a big chandelieure in the middle hanging down from the ceiling.{/i}"
+    "{i}It looked like something long forgotten in the past.{i}"
+    "{i}But there was something strange with the house. Once you wandered your eyes, you could see nothing, just 4 rooms behind 4 doors.{/i}"
+    "{i}Like a hollow mansion, built for the purpose of just living there, only family without any guests.{/i}"
+    "{i}You wonder if that was a sign for the house to be unwelcoming.{/i}"
