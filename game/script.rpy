@@ -61,3 +61,30 @@ label start:
     "{i}But there was something strange with the house. Once you wandered your eyes, you could see nothing, just 4 rooms behind 4 doors.{/i}"
     "{i}Like a hollow mansion, built for the purpose of just living there, only family without any guests.{/i}"
     "{i}You wonder if that was a sign for the house to be unwelcoming.{/i}"
+    "{i}And then you start to wonder, is what youre doing really right? Should you be coming inside this creepy place you do not know of just because of curiosity?{/i}"
+    "{i}You start thinking deeply to yourself and had two options now.{/i}"
+    "{i}Whether to turn back or stay and explore.{/i}"
+    m "What should I do now?"
+    menu:
+        "Stay and explore.":
+            jump label room_room
+        "Go back.":
+            jump label back_room
+label back_room:
+    m "I should not do this, I am heading back."
+    "{i}As you were saying that, you turn back to the door to go back.{/i}"
+    scene black
+    "{i}There was nothing. No door at all. Just a wall. The door that you had opened just had disappeared in an instant."
+    e "Hush"
+    "{i}You heard something in your ear. Something whispering. You did not know what it was. You were alone there.{i}"
+    "{i}You panic and start searching for an escape, running as if your life depended on it.{/i}"
+    scene backdoor at bg_fit
+    with dissolve
+    with hpunch
+    "{i}You come upon a backdoor and see a lock, with what seemed like animals as a passcode.{/i}"
+    m " is this the only escape that I have left?"
+    m "I have no idea of what is happening at all, but all that i know is that i need to get out of this place."
+    m "I need to go back and start exploring the rooms. There might be some clues there."
+
+
+
