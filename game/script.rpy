@@ -507,8 +507,78 @@ label kitchen_cellar:
     if "k_cellar" in done:
         m "{i}No, I have been down once. That is enough.{/i}"
         jump kitchen_menu
-        "{i}The key turnsvery easily"
+    "{i}The key turns very easily, like it had been awaiting to.{/i}"
+    "{i}It carried the smell of earth and apples.{/i}"
+    menu:
+        "Go down?"
+        "Go down.":
+            $ done.add("k_cellar")
+            scene black
+            with fade_black
+            "{i}The stairs go a long way down.{/i}"
+            "{i}At the bottom, there are shelves of preserves and racks of coats.{/i}"
+            "{i}Pinned to a small blue coat is an envelope in a man's hand.{/i}"
+            "'To whoever stays the longest:'"
+            "{i}Inside is a single page.{/i}"
+            "'I did not understand what I was asking when I asked it. I thought love was a door I could hold open. It is a hand that I cannot let go of.'"
+            "'If you are reading this, then you have already been counted. Forgive her. She is not cruel, but just afraid of the quiet.'"
+            $ lore.add("k_letter")
+            m "Forgive who? THe mother? The daughter? The thing that answered?"
+            "{i}At the far end of the cellar, you then see a small door.{/i}"
+            menu:
+                "Do you open it?"
+                "Open the small door":
+                    "{i}Behind it is a room which is no bigger than a cupboard. A ring of chalk on the floor, and a child's tin cup.{/i}"
+                    "{i}And the wall there was scratched with chalk multiple times too. Over and over, the same sentence.{/i}"
+                    "SHE ASKED FOR A LITTLE WHILE"
+                    $ suspicion += 3
+                    $  lore.add("k_ritual_room")
+                    e "That is where I woke up."
+                    "{i}You run. The door slams on your fingers as you race with your heart on climbing up those long stairs of the cellar.{/i}"
+                "Leave it shut.":
+                    "{i}You do not bother with that door.{/i}"
+            scene kitchen at bg_fit
+            with dissolve
+            with fade
+        "Stay at the top.":
+            "{i}You shut the cellar and then step back. Whatever is inside there can keep on waiting.{/i}"
+            jump kitchen_menu
+label lab_eneter:
+    scene lab at bg_fit
+    with dissolve
+    with hpunch
+    if "lab" not in rooms_visited:
+        $ rooms_visited.add("lab")
+        "{i}As soon as you enter the lab, you can smell the chemicals and a small electrical hum can also be heard.{/i}"
+        "{i}There are cracked glasswares , a brass microscope, a cabinet  with dial lock.{/i}"
+        "{i}But the most obviouslt noticeable of all, in the middle there was a heavy oak chair with leather straps for every limb.{/i}"
+        m "The hum is probably from the pitch of a heart monitor in a quiet room."
+        m "Your stomach turns over after imagining what might have possibly happened here."
+        jump lab_menu
 
+label lab_menu:
+    menu:
+        "What do you want to check?"
+        "The journal on the desk.":
+            jump lab_journal
+        "The skull on the wall":
+            jump lab_skull
+        "The restraint chair":
+            jump lab_chair
+        "The humming machine.":
+            jump lab_machine
+        "The microscope.":
+            jump lab_microscope
+        "The locked cabinet." if "I_code" in clues:
+            jump lab_cabinet
+        "The locked cabinet." if "I_code" not in clues:
+            "It seems to be a heavy cabinet with a dial which you do not know the code of, yet. Maybe you will find it."
+            jump lab_menu
+        "Leave the laboratory.":
+            jump room_options
+            
+
+                 
         
         
 
