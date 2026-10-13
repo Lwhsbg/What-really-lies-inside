@@ -625,25 +625,55 @@ label lab_chair:
             "{i}You try to break free, until the skin scrapes off your hands and knees, and strap free.{/i}"
             $ suspicion += 2
             $ done.add("l_chair")
-
-
-
-                 
-        
-        
-
-
-
-
-
-
-
+            e "Wasnt it dreadful? haha."
+            m "{i}Whatever happened in this room, it was nothing about the cure.{/i}"
+        "Leave it alone.":
+            "{i}You do not touch the chair. Maybe it is better left alone.{/i}"
+label lab_machine:
+    "{i}Behind the machine is what looks like a dial valve. It is the source of the hum.{/i}"
+    if "l_machine" in done:
+        "{i}I have had my time with this machine already. I don't want to see it again.{/i}"
+        jump lab_menu
+    $ done.add("l_machine")
+    menu:
+        "Rest your hand on top of the machine?"
+        "Rest your hand on it.":
+            scene black
+            with flicker
+            "{i}The hum climbs into your arm, and the room drops away.{/i}"
+            "{i}You feel something like a mother's hand resting gently in  yours, thin like paper.{/i}"
+            "{i}Your phone buzzes in your pocket. It sounded like it was a message from work.{/i}"
+            "{i}Two minutes, mom.{/i}"
+            "{i}You make a quick call and return.{/i}"
+            "{i}By the time you reach back, she was surrounded by the nurses already. She was no more.{/i}"
+            $ memories.add("hospital")
+            scene lab at bg_fit
+            with dissolve
+            with fade 
+            "{i}Your hand is still on the machine. Your face is wet from the sweat.{/i}"
+            e "You stepped out of the room too..."
+            e "Well, I do know what being left in a room feel like."
+            menu:
+                "What do you say?"
+                "I had no idea it was the last time..":
+                    e "Nobody does."
+                    "{i}The hum drops a little.{/i}"
+                    $ suspicion -= 1
+                "It was not my fault.":
+                    m "It was not my fault. I had done nothing wrong."
+                    e "Of course not."
+                    m "The tone was so soft that it sounded eerie."
+                    $ suspicion += 1
+                "Don't say anything.":
+                    "{i}You pull your hand back from the machine. Some memories are better left alone.{/i}"
+            $ done.discard("lab_menu")
+            jump lab_menu
+label lab_microscope:
+    "{i}A brass microscope stands on the bench.{/i}"
+    if "l_scope" in done:
+        m "I have looked. I am never looking back again."
+        jump lab_menu
+    $ done.add("lab_scope")
+    "{i}You press your eye on the microscope.{/i}"
+    "{i}It was a bit blurry at first, but it started clearing up.{/i}"
     
-
-            
-
-
-
-
-
-
