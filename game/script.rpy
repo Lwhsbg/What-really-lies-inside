@@ -569,14 +569,64 @@ label lab_menu:
             jump lab_machine
         "The microscope.":
             jump lab_microscope
-        "The locked cabinet." if "I_code" in clues:
+        "The locked cabinet." if "l_code" in clues:
             jump lab_cabinet
-        "The locked cabinet." if "I_code" not in clues:
+        "The locked cabinet." if "l_code" not in clues:
             "It seems to be a heavy cabinet with a dial which you do not know the code of, yet. Maybe you will find it."
             jump lab_menu
         "Leave the laboratory.":
             jump room_options
-            
+label lab_journal:
+    "{i}The journal is covered in green cracked leather.{/i}"
+    if "o_stag" in clues:
+        m "{i}I know what is in it. I dont need to read it twice.{/i}"
+        jump lab_menu
+    "{i}The first entries about a doctor trying to cure a young girl with fever is quite good.{/i}"
+    "{i}He seems clever enough to fix it.{/i}"
+    "{i}But the journal gets scribbled more and more and gets messed up until the last page.{/i}"
+    "{i}The last page has no words at all. Only a sketch of dial with three numbers circled: 4, 2, 9{/i}"
+    $ clues.add("l_stag")
+    $ clues.add("l.code")     
+    $ lore.add("l_journal")
+    m "I got the code for the dial finally..."
+    jump lab_menu
+label lab_skull:
+    "{i}Mounted above the cabinet, antlers spread wide across the wall, is a stag's skull.{/i}"
+    "{i} Something shook faintly in one of the antlers.{/i}"
+    if "stag" not in clues:
+        $ clues.add("stag")
+        m "Stag. That is the second animal, in the same style as the wolf."
+        "{i}There ws something carved in the bone beneath it.{/i}"
+        "'Papa was always so proud of this boy.'"
+    else:
+        m "The stag again. I have already got this one."
+    jump lab_menu
+label lab_chair:
+    "{i}The chair is old oak, with leather straps at the wrist, ankles and the chest.{/i}"
+    if "l_chair" in done:
+        m "{i}I have already done what I can here.{/i}"
+        jump lab_menu
+    "{i}Under the seat, someone has scratched four tally marks with a fingernail. The fifth mark is half finished.{/i}"
+    menu:
+        "What do you do?"
+        "Unbuckle the straps, one by one.":
+            $ done.add("l_chair")
+            "{i}You kneel and undo the buckles slowly, and it sounds like the leathers sighed, strap by strap.{/i}"
+            "{i}When the last one snaps, something small slides outside.{/i}"
+            "{i}It was a silver pocket watch, paused at 4:29.{/i}"
+            $ tokens.add("watch")
+            $ lore.add("l_chair")
+            fb "She never struggled as much as I saw her."
+            "{i}The voice sounds like it was of a man's, hoarse.{/i}"
+            "{i}It had already gone away befor you could answer.{/i}"
+        "Sit in and strap yourself.":
+            "{i}You lower yourself into the seat. The oak was warm and the straps buckle slowly around you.{/i}"
+            "{i}The hum from the machine a bit far away gets louder.{/i}"
+            "{i}You try to break free, until the skin scrapes off your hands and knees, and strap free.{/i}"
+            $ suspicion += 2
+            $ done.add("l_chair")
+
+
 
                  
         
