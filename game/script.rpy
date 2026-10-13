@@ -676,4 +676,37 @@ label lab_microscope:
     $ done.add("lab_scope")
     "{i}You press your eye on the microscope.{/i}"
     "{i}It was a bit blurry at first, but it started clearing up.{/i}"
-    
+    "{i}You can see a warm light flickering, going off and on.{/i}"
+    "{i}Almost like a heartbeat.{/i}"
+    $ lore.add("l_scope")
+    m "That's her. That is her. Somebody put a lttle girl under the glass. "
+    "{i}The walls around the laboratory ruffle a bit.{/i}"
+    jump lab_menu
+label lab_cabinet:
+    if "l_cabinet" in done:
+        m "{i}The cabinet is empty and open now.{/i}"
+        jump lab_menu
+    $ done.add("l_cabinet")
+    "{i}You turn the dial and put the code that you found out.{/i}"
+    "{i}Inside, there was something that looked like a family photo.{/i}"
+    "{i}A tall man and a woman with her sleeves rolled up. A girl with a gap on her teeth and a moth in a finger, and a little boy with a book.{/i}"
+    "{i}There creepily seemed to be a space for the fifth.{/i}"
+    e "I like that one. Everybody looks so happy in it."
+    $ suspicion += 1
+    jump lab_menu
+label library_enter:
+    scene library at bg_fit
+    with dissolve
+    with fade
+    if "library" not in rooms_visited:
+        $ rooms_visited.add("library") 
+        "{i}The library was dark and huge, with shelves everywhere with books, which looked like it had not been dusted in decades.{/i}"
+        "{i}You could see a fireplace and a portrait above it, besides a reading desk."
+        m "If this place can explain itself anywhere, It would be here."
+    else:
+        "{i}The library is silent and patient.{/i}"
+    jump library_menu:
+label library_menu:
+    menu:
+        "What do you want to check?"
+        
