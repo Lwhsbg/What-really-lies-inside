@@ -586,6 +586,7 @@ label lab_journal:
     "{i}But the journal gets scribbled more and more and gets messed up until the last page.{/i}"
     "{i}The last page has no words at all. Only a sketch of dial with three numbers circled: 4, 2, 9{/i}"
     $ clues.add("l_stag")
+    $ clues.add("o_stag")
     $ clues.add("l.code")     
     $ lore.add("l_journal")
     m "I got the code for the dial finally..."
@@ -1016,7 +1017,92 @@ label bedroom_floorboard:
     m "That is it. I figured it out."
     e "Finally, huh? Took you long enough."
     jump bedroom_menu
-    
+label backdoor_lock:
+    scene black
+    with fade
+    "The lock is waiting for you."
+    "Four carved animals stare back from the iron plate."
+    "A moth, an owl, a stag and a wolf."
+    "Beneath them, the thing has been scratched so much that it looks like writing."
+    m "Four animals. Four rooms. Four people."
+    "You place your hands against the lock."
+    "It is warm."
+    e "You found the way out."
+    m "I just found a door. That does not mean that I trust it."
+    e "You have learned so much."
+    "The voice sounded like he was almost proud."
+    e "You know their names. You know what they did. You know what they left behind."
+    "The lock clicks just once."
+    e "But do you know what you are about to open?"
+    menu:
+        "What do you do?"
+        "Enter the orders that you discovered." if orders_found() == 4:
+            jump ending_lock_attempt
+        "Try to force the lock open.":
+            "You grip the iron plate and pull it."
+            "The lock does not move."
+            "Something beneath the door pulls back."
+            e "Why does everyone only try to take?"
+            "Your fingers begin to hurt. You let go."
+            $ suspicion += 3
+            $ lock_attempts += 1
+            if suspicion >= 15:
+                $ caught_reason = "greed"
+                jump ending_caught
+            "The four animals seem quieter now."
+            jump backdoor_lock
+        "Try to hear what is beneath the door.":
+            "You lower your hand."
+            "For the first time, you stop trying to escape long enough to listen."
+            "There seems to be a faint sound on the other side."
+            "A child, breathing in the dark."
+            fd "Are you leaving too?"
+            "You could not answer immediately."
+            "You then think of Mira, who is still waiting for your call that never went."
+            menu:
+                "What do you say?"
+                "I am sorry. I should have stayed.":
+                    m "I am sorry."
+                    m "I should have stayed. I should have answered."
+                    "The house suddenly becomes quiet."
+                    e "You cannot stay for everyone."
+                    m "I know."
+                    "For a moment, the voice sounded less like a child and impossibly old."
+                    e "Then why do you keep trying to?"
+                    jump ending_stay
+                "I am leaving. I cannot help you.":
+                    m "I am going to leave this place. I can not help you."
+                    "The silence that follows is so complete that you could hear your heartbeat at that moment."
+                    e "I know."
+                    "The lock turns by itself."
+                    jump ending_escape
+label ending_lock_attempt:
+    scene black
+    with dissolve 
+    with fade
+    "You close your eyes slowly and then try to remember."
+    "The moth. The owl. The stag. The wolf."
+    "You start remembering not just the animals, but the people who left them behind too."
+    if "o_moth" in clues:
+        "First: The moth"
+    if "o_owl" in clues:
+        "Second: The owl."
+    if "o_stag" in clues:
+        "Third: the stag"
+    if "o_wolf" in clues:
+        "Last: the wolf"
+    "You arrange the order in your mind and then press the four marks."
+    "For a moment, nothing happens."
+    "Then something behind the door begins to turn."
+    "One click, then another."
+    "Then a sound that went on like a long, tired sigh."
+    "The lock opens."
+    "But you do not pull the lock immediately."
+    "You remember the burned letter in the library."
+    "The thing in this house was not Lenora."
+    "It had worn her loneliness like a coat. It had learned to speak in a child's voice because someone had answered it when she was afraid."
+    "And the family had spent their final days trying to make it quiet."
+
 
 
 
