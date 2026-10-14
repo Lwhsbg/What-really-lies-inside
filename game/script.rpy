@@ -838,4 +838,35 @@ label library_hidden:
     m "{i}Third shelf, fourth row and the third book from there.{/i}"
     "{i}You pick up the book. It matches none of it's neighbouring books.{/i}"
     "{i}It did not have any dust. It had no title in it either.{/i}"
-    
+    "{i}Inside is a diary in a boy's little hand. The one that the boy seemed very protective and careful about.{/i}"
+    "{i}'Father says that my turn is in the second. Lenora is going first. Maybe she has already gone. Maybe I hould read to her so she does not get scared.'{/i}"
+    "{i}I read to her every night. The same two books. She laughs in the same places, even now.{/i}"
+    $ clues.add("o_owl")
+    $ lore.add("l_diary")
+    "{i}You think of Mira, when she was eight curled up against your arm when you would read her the same picture book.{/i}"
+    "{i}She would laugh at the same part everytime, no matter how much you read to her.{/i}"
+    "{i}The last time that you were home, Mira had joked about if you could read her the picture book again.{/i}"
+    "{i}You said that you were busy. She then had laughed, like it did not matter at all.{/i}"
+    $ memories.add("mira_book")
+    m "{i}Second. Caspian went second. Because he wanted his sister not to be afraid.{/i}"
+    e "He read it to her until the very end. He was so good at it."
+    "{i}The diary slips from your hands. You do not feel your fingers let go. It was already gone before it reaches the floor.{/i}"
+    jump library_menu
+label bedroom_enter:
+    scene bedroom at bg_fit
+    with dissolve
+    with fade
+    if "bedroom" not in rooms_visited:
+        $ rooms_visited.add("bedroom")
+        "{i}Unlike any other houses, the bedroom actually felt cared for. A small bed sits made, and a music box rests on the night stand.{/i}"
+        "{i}A vanity mirror stands in the corner.{/i}"
+        "{i}On the dresser, there was a glass case of pinned moths and on the table by the window, a dollhouse which was the perfect copy of this very house.{/i}"
+        m "{i}It feels like someone still comes to this room every night.{/i}"
+        "{i}You cannot see anything outside from the window. It only gives you your own tired face.{/i}"
+    else:
+        "{i}The little room is quiet. The covers on the bed look like they were freshly smoothed.{/i}"
+        jump bedroom_menu
+label bedroom_menu:
+    menu:
+        "What do you want to check?":
+            
