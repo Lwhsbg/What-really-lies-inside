@@ -963,8 +963,60 @@ label bedroom_mirror:
     "{i}The vanity mirror is fogged thick with age. You wipe it clear using your sleeve and for a fraction of second, it seemed like your reflection was really not your own.{/i}"
     "{i}Behind you stood a young girl in a nightgown, probably nine, holding a candle.{/i}"
     "{i}Her face is just a smear of shadow.{/i}"
-    "{i}She raises one finger to her lips, shh. Then points it at the foot of the bed, and when you look back, she was not there at all.{/i}"
-
+    "{i}She raises one finger to her lips, shh. Then points it at the foot of the bed.{/i}"
+    if "b_mirror" not in done:
+        $ done.add("b_mirror")
+        $ suspicion += 1
+        $ lore.add("b_mirror")
+    "{i}You spin around. Nothing there. When you look back, it is only you again, pale and now shaking.{/i}"
+    m "{i}She wanted me to look at the foot of the bed.{/i}"
+    jump bedroom_menu
+label bedroom_dollhouse:
+    "{i}To your absolute surprise, the dollhouse is an exact copy of the mansion: Four rooms and a hall, with every detail done perfectly.{/i}"
+    "{i}Even the chandelier.{/i}"
+    "{i}Four small dolls sit in four small rooms. In the kitchen, a woman. In the laboratory, a tall man. In the library, a boy with a book and in the bedroom, a little girl.{/i}"
+    if "b_doll" in done:
+        m "{i}I am not touching the fifth doll again.{/i}"
+        jump bedroom_menu
+    "{i}A fifth doll lies on its side in the hall. It wears a small grey coat the same colour as yours.{/i}"
+    menu:
+        "What do you do?"
+        "Pick up the fifth doll.":
+            $ done.add("b_doll")
+            $ suspicion +=  2
+            "{i}It is warm. It's face is blank, unpainted and as you hold it, you feel a tiny heartbeat against your fingers.{/i}"
+            "{i}Exactly in time with your own.{/i}"
+            e "That one is yours."
+            "{i}In shock, you set it down and hard, and the other dolls in the other rooms turn to look at you.{/i}"
+            $ lore.add("b_doll")
+        "Leave it lying where it is.":
+            "{i}You do not touch it. In the kitchen, the tiny woman turns her head to watch you leave.{/i}"
+            jump bedroom_menu
+label bedroom_frame:
+    "{i}There seems to be a pencil mark until nine, which maybe indicates a year of passing.{/i}"
+    "'We stopped counting. She stays this tall now.'"
+    if "b_frame" not in done:
+        $ done.add("b_frame")
+        $ lore.add("b_frame")
+        m "{i}She never got any older. None of them did.{/i}"
+        jump bedroom_menu
+label bedroom_floorboard:
+    if "o_moth" in clues:
+        m "{i}I have already taken what was under that floorboard.{/i}"
+        jump bedroom_menu
+    "{i}At the foot of the bed, one board stays up higher than the rest. Your fingernail finds the seam, and it lifts up without a sound.{/i}"
+    "{i}Underneath, you found a letter with a child's handwriting.{/i}"
+    "'If you are reading this, you are in the house. I am sorry, I was first. Papa said that it would only be for a little while.'"
+    "'Mama cried when she said yes.'"
+    "'I do not want to be alone in the dark. I only want someone to stay.'"
+    "'Be kind to us. We are all trying to be kind to it. That is how we keep it quiet.'"
+    $ clues.add("o_moth")
+    $ lore.add("b_letter")
+    "Moth went first, then Owl and Stag and lastly, wolf of the kitchen."
+    m "That is it. I figured it out."
+    e "Finally, huh? Took you long enough."
+    jump bedroom_menu
+    
 
 
 
