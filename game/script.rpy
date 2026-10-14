@@ -868,5 +868,56 @@ label bedroom_enter:
         jump bedroom_menu
 label bedroom_menu:
     menu:
-        "What do you want to check?":
+        "What do you want to check?"
+        "The moth case on the dresser.":
+            jump bedroom_case
+        "The little bed.":
+            jump bedroom_bed
+        "The music box.":
+            jump bedroom_musicbox
+        "The vanity mirror.":
+            jump bedroom_mirror
+        "The dollhouse.":
+            jump bedroom_dollhouse
+        "The marks on the door frame.":
+            jump bedroom_frame
+        "The loose floorboard." if "b_mirror" in done:
+            jump bedroom_floorboard
+        "Look for what the mirror showed." if "b_mirrror" not in done:
+            "{i}Nothing about the floor looks out of place. You would need a reason to look closer.{/i}"
+            jump bedroom_menu
+        "Leave the bedroom.":
+            jump room_options
+label bedroom_case:
+    "{i}Moths, dozens of them, pinned neatly under the glass with their wings spread wide. Each one has a label with a name on it.{/i}"
+    if "moth" not in clues:
+        $ clues.add("moth")
+        m "A moth. That must be the fourth. Now that is finally all four animals for me."
+        $ lore.add("b_case")
+        "{i}One of the moths, you swear, was not pinned into position a moment ago.{/i}"
+    else:
+        m "The moth again. I have already got this one."
+        jump bedroom_menu
+label bedroom_bed:
+    "{i}The bed is made with hospital-sharp corners and the pillow is plumped. The blanket is folded back as if someone is about to climb in.{/i}"
+    if "b_bed" in done:
+        m "{i}She is sleeping. Let her sleep.{/i}"
+        jump bedroom_menu
+    menu:
+        "What do you do?"
+        "Straighten the blanket, and say goodnight to the empty bed.":
+            $ done.add("b_bed")
+            "{i}You draw the blanket up to the pillow and smooth it flat. It feels stupi, but feels useful somehow too.{/i}"
+            m "Goodnight. I hope it is quiet for you."
+            "{i}The matress sighs, and what sounds like a child makes a long, sleepy breath."
+            "{i}On the empty pillow which was there a moment ago, there is a small moth with a crooked wing and two uneven eyes.{/i}"
+            "{i}You take the moth.{/i}"
+            $ tokens.add("moth_toy")
+            $ lore.add("b_bed")
+            fd "Mothy takes the scary away. You can borrow him."
+            "{i}Your throat becomes tight. You think of every bedtime you did not stay up for Mira.{/i}"
+            $ memories.add("mira_goodnight")
+        "Sit on the edge of the bed."
+
+
             
