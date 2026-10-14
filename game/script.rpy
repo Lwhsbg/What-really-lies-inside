@@ -795,4 +795,47 @@ label library_portrait:
         "{i}She is looking out of the frame. At you.{/i}"
     jump library_menu
 label library_fireplace:
-    "{i}"
+    "{i}The fireplace is cold, the ashes just grey crust now.{/i}"
+    "{i}You crouch and sift gently.{/i}"
+    "{i}Most of it crumbles at your touch, but a few curled fragmented pieces of paper survive at the back.{/i}"
+    if "l_fire" in done:
+        m "There is nothing else here."
+        jump library_menu
+    menu:
+        "Do you try to read them?"
+        "Piece the fragments together.":
+            $ done.add("l_fire")
+            "{i}A handful of words manage to survive.{/i}"
+            "'...It cannot be undone. The binding holds four of us, but the thing that answered is not her. It only wears her loneliness like a coat...'"
+            "'If it ever goes outside of this house, it will go looking for more of us.'"
+            $ lore.add("l_fire")
+            $ suspicion += 1
+            m "{i}It is not Lenora. It is something that put on her loneliness, and the family have spent a century holding it in.{/i}"
+            "{i}Behind you, you can feel the irons rattle in their places, though there was nothing there to touch them.{/i}"
+        "Leave them.":
+            "{i}You brush the soot from your hands. You imagine the ashes will not be worth it.{/i}"
+            jump library_menu
+label library_globe:
+    "{i}You lay a palm on the turning globe as it stops at once, as if it was relieved.{/i}"
+    "{i}The continents which are present in the globe were old and wrong. But around the house in an unmarked forest, there were two pins.{/i}"
+    "{i}One was a big gold pin and one was a smaller red one.{/i}"
+    if "l_globe" in done:
+        m "The red pin is where I crashed. I know, I know."
+        jump library_menu
+    $ done.add("l_globe")
+    $ lore.add("l_globe")
+    $ suspicion += 1
+    m "{i}That looks exactly like where I went off the road. The red pin...{/i}"
+    m "{i}Somebody marked it... before I even got here.{/i}"
+    m "{i}I had just changed my tires. The steering had not failed either. Something took it.{/i}"
+    e "I mark the road for everyone, most just go quietly.{/i}"
+    "{i}The globe begins to spin again now, faster than before.{/i}"
+    jump library_menu
+label library_hidden:
+    if "o_owl" in clues:
+        m "{i}The book is back to where it was, and I know what it says.{/i}"
+        jump library_menu
+    m "{i}Third shelf, fourth row and the third book from there.{/i}"
+    "{i}You pick up the book. It matches none of it's neighbouring books.{/i}"
+    "{i}It did not have any dust. It had no title in it either.{/i}"
+    
