@@ -917,7 +917,55 @@ label bedroom_bed:
             fd "Mothy takes the scary away. You can borrow him."
             "{i}Your throat becomes tight. You think of every bedtime you did not stay up for Mira.{/i}"
             $ memories.add("mira_goodnight")
-        "Sit on the edge of the bed."
+        "Sit on the edge of the bed.":
+            "{i}The matress dips under your weight, and it is very warm.{/i}"
+            "{i}It doesnt feel like the warmth of a place where someone had slept though.{/i}"
+            "{i}It feels more like a place where someone is still lying. Just under the blankets, but out of sight.{/i}"
+            "{i}The mattress tips very slightly toward the pillow as though a second weight has settled besides you.{/i}"
+            $ suspicion += 2
+            $ done.add("b_bed")
+            m "{i}Don't move. Do not turn your head....{/i}"
+            e "Stay.. just until I fall asleep."
+            "{i}A cool hand rests gently on yours, light as a paper, then it is gone.{/i}"
+            "{i}You stumble upon your feet without even realizing that you were standing.{/i}"
+        "Step away from it":
+            m "Whatever this bed it waiting for, it is not me."
+            jump bedroom_menu
+label bedroom_musicbox:
+    "{i}A small music box sits on the nightstand, with a lid that is carved using tiny moths. It looks like the key there is stiff with age.{/i}"
+    if "b_music" in done:
+        m "{i}The tune is still in my head. I cannot stop imagining it.{/i}"
+        jump bedroom_menu
+    menu:
+        "What do you do?"
+        "Wind it, and let it play all the way through.":
+            $ done.add("b_music")
+            "{i}It clicks, stutters and begins.{/i}"
+            "{i}You know it. You know it the way that you know your own name. It was the same lullaby you used to hum it to Mira when she was a kid and afraid of the dark.{/i}"
+            "{i}You had never asked yourself where you had learned it though.{/i}"
+            $ memories.add("lullaby")
+            $ lore.add("b_music")
+            m "{i}Mom sang this to us. The both of us. That is how i knew of it...{/i}"
+            "{i}Then from somewhere in the walls, a second voice begins to hum along, which sounds like a mother's voice.{/i}"
+            fa "She always did hum it a little sharp."
+            "{i}The box winds down. The last note hangs in the air for a long time after the box had turned off."
+            $ suspicion -= 1
+        "Slam the lid shut.":
+            "{i}You snap the lid back down mid note.{/i}"
+            "{i}The music box shrieks and something inside the wall begins to sob.{/i}"
+            $ suspicion += 2
+            $done.add("b_music")
+            e "That was hers."
+        "Leave it be.":
+            "{i}You leave the key where it was thinking it was not your playlist to listen to.{/i}"
+            jump bedroom_menu
+label bedroom_mirror:
+    "{i}The vanity mirror is fogged thick with age. You wipe it clear using your sleeve and for a fraction of second, it seemed like your reflection was really not your own.{/i}"
+    "{i}Behind you stood a young girl in a nightgown, probably nine, holding a candle.{/i}"
+    "{i}Her face is just a smear of shadow.{/i}"
+    "{i}She raises one finger to her lips, shh. Then points it at the foot of the bed, and when you look back, she was not there at all.{/i}"
+
+
 
 
             
