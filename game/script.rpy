@@ -756,5 +756,43 @@ label library_book:
         m "{i}It is back in the shelf now. That is better.{/i}"
         jump library_menu
     menu:
-        "What "
-
+        "What do you do?"
+        "Close it gently and then put it back on it's shelf.":
+            $ done.add("l_book")
+            "{i}You straighten the crumbled pages, gently pick up the book and close it then put it back on its shelf.{/i}"
+            "{i}The rough book fits very smoothly and comfortably into the shelf, like it had been waiting for years.{/i}"
+            "{i}After you kept the book on it's shelf, something flutters out. Which looks like a green ribbon{/i}"
+            "{i}It felt like a gift to you so you keep it.{/i}"
+            $ tokens.add("bookmark")
+            fc "Please be careful in the library."
+            "{i}That sounded like a little boy's voice, embarasses and then gone in a second.{/i}"
+        "Skim it, then toss it aside.":
+            "{i}Poems, mostly whch seemed to be written by a pencil.{/i}"
+            "{i}You toss it back on the floor figuring it was where it belonged.{/i}"
+            $ suspicion += 1
+            e "He loved that one."
+            "{i}A fluttering noise comes from the other side of the library like some startled bird then goes quiet.{/i}"
+            m "What was that?"
+        "Tear out a page.":
+            "{i}You look at it and tear up a page. The tearing page does not sound like paper at all.{/i}"
+            "{I}It sounded like a sharp, small cry which a small kid would make.{/i}"
+            $ suspicion += 2
+            e "no.. not his books..."
+            "{i}The page crumbles into ash in your hands and the library grows colder, almost quieter.{/i}"
+            jump library_menu
+label library_portrait:
+    "{i}Above the fireplace sits a huge portrait, of the family photo that you saw in the laboratory, but this time painted in a far finer detail."
+    "{i}The one wth the father, mother, the daughter and the son, also detailing the moth on the little girl's hands.{/i}"
+    "{i}The painter has left the room. There is an empty chair at the end of the group, painted faintly.{/i}"
+    "{i}Though it looked like it was added in the last minute and unfinished.{/i}"
+    if "l_portrait" in done:
+        m "{i}don't look at the empty chair, don't look at the empty chair...{/i}"
+    else:
+        $ done.add("l_portrait")
+        $ lore.add("l_portrait")
+        m "They expected someone...they have always been expecting someone.{/i}"
+        "{i}As you step back, you came to notice that the little girl no longer seemed to be looking at the painter like she did in the photo before.{/i}"
+        "{i}She is looking out of the frame. At you.{/i}"
+    jump library_menu
+label library_fireplace:
+    "{i}"
