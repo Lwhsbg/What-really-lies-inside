@@ -706,7 +706,55 @@ label library_enter:
     else:
         "{i}The library is silent and patient.{/i}"
     jump library_menu:
+
 label library_menu:
     menu:
         "What do you want to check?"
-        
+        "The ledger on the reading desk.":
+            jump library_ledger
+        "The owl bookend.":
+            jump library_owl
+        "The book on the floor.":
+            jump library_book
+        "The portrait above the fireplace.":
+            jump library_portrait
+        "The ashes in the fireplace.":
+            jump library_fireplace
+        "The turning globe.":
+            jump library_globe
+        "Search the shelves." if "shelf_note" not in clues:
+            "{i}There are hundreds of books here. There is no way you would find something specific.{/i}"
+            jump library_menu
+        "The hidden book in the shelves." if "shelf_note" in clues:
+            jump library_hidden
+        "Leave the library.":
+            jump room_options
+label library_ledger:
+    "{i}A heavy ledger lies open on the desk, names and dates in the fading ink. Alaric, Seraphine, Caspian and Lenora.{/i}"
+    if "shelf_note" in clues:
+        m "I have already copied the margin note. Third shelf, fourth row and third book."
+        jump library_menu
+    "{i}Below each name is a little numerical text with hidden written over it.{/i}"
+    "{i}You read the hint carefully. 3,1,4.{/i}"
+    m "So third shelf, fourth row and the third book."
+    $ clues.add("shelf_note")
+    $ lore.add("l_ledger")
+    m "All four of them dies in four months? I wonder what even could happen for that to occur."
+    jump library_menu
+label library_owl:
+    "{i}In the corner of the desk, there seemed to be an owl carved from dark wood, with it's eyes hollowed out.{/i}"
+    if "owl" not in clues:
+        $ clues.add("owl")
+        m "An owl. So that is the third creature. It thas a similar style of carving as the others."
+        $ lore.add("owl")
+    else:
+        m "The owl again. I have already got this one."
+        jump library_menu
+label library_book:
+    "{i}The book on the floor is open, which looked like it was dropped in the past never to be picked up again.{/i}"
+    if "l_book" in done:
+        m "{i}It is back in the shelf now. That is better.{/i}"
+        jump library_menu
+    menu:
+        "What "
+
