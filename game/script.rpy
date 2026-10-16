@@ -31,7 +31,7 @@ label start:
     m "How did that happen? I just changed my tires some days ago."
     "{i}You check on your car to find out that it is of no good to go anymore.{/i}"
     "{i}Once you realized that, you thought things could not go more wrong until the upset sky started pouring.{/i}"
-    "You took shelter of the tree that you crashed in, but it did not help much.{/i}"
+    "{i}You took shelter of the tree that you crashed in, but it did not help much.{/i}"
     "{i}Just in a distance, you spot an even bigger tree with a good enough root to handle the rain.{/i}"
     "{i}You run to it in a hurry and take shelter beneath it.{/i}"
     "{i}As soon as you go beneath it, you see a dim light coming from a distance.{/i}"
@@ -67,9 +67,9 @@ label start:
     m "What should I do now?"
     menu:
         "Stay and explore.":
-            jump label room_room
+            jump room_room
         "Go back.":
-            jump label back_room
+            jump back_room
 label back_room:
     m "I should not do this, I am heading back."
     "{i}As you were saying that, you turn back to the door to go back.{/i}"
@@ -78,9 +78,6 @@ label back_room:
     e "Hush"
     "{i}You heard something in your ear. Something whispering. You did not know what it was. You were alone there.{i}"
     "{i}You panic and start searching for an escape, running as if your life depended on it.{/i}"
-    scene backdoor at bg_fit
-    with dissolve
-    with hpunch
     "{i}You come upon a backdoor and see a lock, with what seemed like animals as a passcode.{/i}"
     m " is this the only escape that I have left?"
     m "I have no idea of what is happening at all, but all that i know is that i need to get out of this place."
@@ -91,7 +88,7 @@ label room_room:
     m "Might just find something interesting inside, haha."
     m "How could I sleep when I have this huge thing to explore in front of me."
     m "Adventure is callinggg."
-    jump rooom_options
+    jump room_options
 label room_options:
     scene main_hall at bg_fit
     with dissolve
@@ -132,7 +129,7 @@ label room_options:
         "The Kitchen":
             jump kitchen_enter
         "The Laboratory":
-            jump lab_eneter
+            jump lab_enter
         "The Library":
             jump library_enter
         "The Bedroom":
@@ -402,7 +399,7 @@ label kitchen_sit:
             "{i}You gag and shove yourself back. The chair slides away on its own though, letting you leave.{/i}"
             "{i}You get the dreadful feeling of having signed something.{/i}"
             jump kitchen_menu
-label kitchen_knives
+label kitchen_knives:
     "{i}Every knife is oiled and bright, but the cutting boards are scarred from decades ago.{/i}"
     "{i}Carved into one corner was a wolf's head with its jaw half open.{/i}"
     if "wolf" not in clues:
@@ -419,7 +416,7 @@ label kitchen_window:
         $ done.add("k_window")
         $ lore.add("k_window")
         m "Wow, four stones there, four rooms and four animals, and there is a fifth hole dug up."
-        m "Maybe it is just soil. It doesnt mean anything.{/i}"
+        m "{i}Maybe it is just soil. It doesnt mean anything.{/i}"
         "{i}You look closer. The fifth hole looks exactly like your height.{/i}"
         jump kitchen_menu
 label kitchen_stove:
@@ -543,7 +540,7 @@ label kitchen_cellar:
         "Stay at the top.":
             "{i}You shut the cellar and then step back. Whatever is inside there can keep on waiting.{/i}"
             jump kitchen_menu
-label lab_eneter:
+label lab_enter:
     scene lab at bg_fit
     with dissolve
     with hpunch
@@ -706,7 +703,7 @@ label library_enter:
         m "If this place can explain itself anywhere, It would be here."
     else:
         "{i}The library is silent and patient.{/i}"
-    jump library_menu:
+    jump library_menu
 
 label library_menu:
     menu:
@@ -791,7 +788,7 @@ label library_portrait:
     else:
         $ done.add("l_portrait")
         $ lore.add("l_portrait")
-        m "They expected someone...they have always been expecting someone.{/i}"
+        m "{i}They expected someone...they have always been expecting someone.{/i}"
         "{i}As you step back, you came to notice that the little girl no longer seemed to be looking at the painter like she did in the photo before.{/i}"
         "{i}She is looking out of the frame. At you.{/i}"
     jump library_menu
@@ -829,7 +826,7 @@ label library_globe:
     m "{i}That looks exactly like where I went off the road. The red pin...{/i}"
     m "{i}Somebody marked it... before I even got here.{/i}"
     m "{i}I had just changed my tires. The steering had not failed either. Something took it.{/i}"
-    e "I mark the road for everyone, most just go quietly.{/i}"
+    e "{i}I mark the road for everyone, most just go quietly.{/i}"
     "{i}The globe begins to spin again now, faster than before.{/i}"
     jump library_menu
 label library_hidden:
@@ -1490,4 +1487,48 @@ label ending_caught:
     "The front door is gone."
     "The backdoor is gone."
     "The four rooms are gone."
-    "Only the hall "            
+    "Only the hall remains."
+    "And at this far end, a long dining table appears."
+    "Five chairs are there, and four are occupied by shapes that you cannot quite look at or perceive."
+    "The fifth is empty."
+    "A plate has been set in front of it."
+    "A name has been written on a small card."
+    "It was your name."
+    m "no.."
+    "You run." 
+    "The hall in front of you stretches endlessly."
+    "You look back."
+    "The distance from the dining table has not changed one bit."
+    "You run until your lung burns."
+    "You run until your legs give away."
+    "The fifth chair waits for you."
+    e "You can rest now."
+    "You try to crawl away. The floor is soft beneath your palms."
+    "Not wood or stone, earth."
+    "You look down, your hands are covered in dark soil."
+    "There is a hole in the floor, just enough for you to fit inside, like the one you saw from the kitchen windows."
+    "You remember the doll that looked exactly like you, and seemed to have a heart."
+    "You remember every warning that you have ignored until now."
+    "The soil begins to rise around your hands."
+    "You struggle."
+    "Something takes your wrist."
+    "A second hand takes the other, but they are not strong."
+    "They do not need to be, you are so tired."
+    "You are so tired of running."
+    "You think of Mira."
+    "You start thinking of the calls that you never answered."
+    "You try to imagine the sound of her laughter."
+    "You can almost hear it."
+    "Then the house itself whispers in her voice."
+    mira "Come home sometime."
+    "The earth reaches your shoulders."
+    "You want to say that you are sorry."
+    "You want to say that you were finally coming home."
+    "You wanted to tell her that you never meant for this to happen."
+    "But the dark fills your mouth."
+    "Somewhere in the mansion, a small kid laughs."
+    "The fifth chair scrapes back from the table, and an unrecognizable shape appears there as well."
+    "And the house becomes quiet again."
+    centered "{size =+ 12}THE FIFTH GRAVE{/size}"
+    centered "{i}BAD ENDING{/i}"
+    return
