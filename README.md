@@ -16,3 +16,13 @@ Tech stack:
 ## What I Learnt And What I Struggled With
 
 Very surprisingly I did not struggle with the backgrounds at all this time around so I learnt that. The thing i struggled the most with this time was with the suspicion system and all. i tried different outcomes on different situations the more of it you had and i had a hard time understanding it though it all worked out in the end.
+
+## Screenshots
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/6496a80b-8ac8-4b02-8bf3-8cfb2e349a22" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/d0aec0eb-dbc6-473e-9a8d-1e17aebb3577" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/595d7e47-72cc-4e74-a21a-3b1db3b6eb2d" />
+
+
+
